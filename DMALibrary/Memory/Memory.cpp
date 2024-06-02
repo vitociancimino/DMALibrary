@@ -557,6 +557,9 @@ bool Memory::DumpMemory(uintptr_t address, std::string path)
 		sections->SizeOfRawData = sections->Misc.VirtualSize;
 	}
 
+	auto debug = (PIMAGE_DEBUG_DIRECTORY)(target.get() + nt_header->OptionalHeader.DataDirectory[IMAGE_DIRECTORY_ENTRY_DEBUG].VirtualAddress);
+	debug->PointerToRawData = debug->AddressOfRawData;
+
 	//Find all modules used by this process
 	//auto descriptor = Read<IMAGE_IMPORT_DESCRIPTOR>(address + ntHeader->OptionalHeader.DataDirectory[1].VirtualAddress);
 
