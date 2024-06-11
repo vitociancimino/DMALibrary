@@ -318,6 +318,18 @@ PEB Memory::GetProcessPeb()
 	return { };
 }
 
+uintptr_t Memory::GetProcessPebAddress()
+{
+	auto info = GetProcessInformation();
+	if (info.win.vaPEB)
+	{
+		LOG("[+] Found process PEB ptr at 0x%p\n", info.win.vaPEB);
+		return info.win.vaPEB;
+	}
+	LOG("[!] Failed to find the processes PEB\n");
+	return { };
+}
+
 size_t Memory::GetBaseDaddy(std::string module_name)
 {
 	std::wstring str(module_name.begin(), module_name.end());

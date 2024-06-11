@@ -124,6 +124,12 @@ public:
 	PEB GetProcessPeb();
 
 	/**
+	* \brief Gets the process peb Address
+	* \return the process peb Address
+	*/
+	uintptr_t GetProcessPebAddress();
+
+	/**
 	* brief Gets the base address of the process
 	* @param module_name the name of the module
 	* @return the base address of the process
